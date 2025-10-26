@@ -39,16 +39,16 @@ At the end of the OSINT scan, the timeline is automatically:
 ### Console Output
 ```
  TIMELINE ANALYZER 
-[02:57:58] Target: johndoe2024
-[02:57:58] Total Events: 13
-[02:57:58] Platforms Found: 8
-[02:57:58] Activity Range: 2013-10-04 to 2025-10-26
+[14:23:15] Target: johndoe2024
+[14:23:15] Total Events: 13
+[14:23:15] Platforms Found: 8
+[14:23:15] Activity Range: 2013-10-04 to 2024-10-15
 
 ======================================================================
 CHRONOLOGICAL TIMELINE
 ======================================================================
 
- 2025-10-26 
+ 2024-10-15 
   ✓ [GITHUB] Profile discovered on github
       ↳ https://github.com/johndoe2024
   ✓ [TWITTER] Profile discovered on twitter
@@ -78,11 +78,11 @@ The HTML report provides a beautiful, interactive timeline visualization:
     "platforms_count": 8,
     "platforms": ["github", "twitter", "instagram", ...],
     "earliest_activity": "2013-10-04",
-    "latest_activity": "2025-10-26"
+    "latest_activity": "2024-10-15"
   },
   "events": [
     {
-      "date": "2025-10-26",
+      "date": "2024-10-15",
       "platform": "github",
       "type": "profile_found",
       "details": "Profile discovered on github",
