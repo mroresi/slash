@@ -38,7 +38,7 @@ class extract:
             return []
 
     def mail(from_name,text):
-        mails = re.findall('\S+@\S+', text) 
+        mails = re.findall(r'\S+@\S+', text) 
         if(len(mails)!=0):
             alert(mails,from_name,mails=True)
         try:
@@ -48,7 +48,7 @@ class extract:
 
     class just:
         def mail(text):
-            mails = re.findall('\S+@\S+', text) 
+            mails = re.findall(r'\S+@\S+', text) 
             try:
                 return mails
             except:

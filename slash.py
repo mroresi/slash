@@ -19,6 +19,7 @@ from api.pastebin import search as pastesearch
 from api.github import search as githubsearch
 from api.extract import extract as extract 
 from api.leakcheck import check as leakcheck 
+from api.timeline import finalize_timeline 
 
 
 
@@ -44,6 +45,12 @@ def _username(username):
     except:pass
     try:threading.Thread(target=githubsearch,args=(username,)).start()
     except:pass
+    
+    # Wait for all threads to complete (with timeout)
+    time.sleep(8)
+    
+    # Display timeline summary
+    finalize_timeline()
 
 def _mail(mail_adress):
     print(f"{symbol.log} {symbol.slash} starting...")
@@ -53,6 +60,12 @@ def _mail(mail_adress):
     time.sleep(3)
     threading.Thread(target=pastesearch,args=(mail_adress,)).start()
     threading.Thread(target=githubsearch,args=(mail_adress,)).start()
+    
+    # Wait for all threads to complete (with timeout)
+    time.sleep(8)
+    
+    # Display timeline summary
+    finalize_timeline()
 
 
     

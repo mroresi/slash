@@ -1,5 +1,6 @@
 from profiles.autoimport import *
 from api.scrape import *
+from api.timeline import get_timeline
 import threading
 
 def ozel_scrape(url,username):
@@ -27,6 +28,9 @@ def notapi(username,dct):
             if(r.getcode()!=nf):
                 print((config.notapi_fn).format(symbol.social_found,f"{color.red}{color.bold}social/{color.green}{color.bold}{name}{color.reset}",htext))
                 threading.Thread(target=ozel_scrape,args=(url,username,)).start()
+                # Add to timeline
+                timeline = get_timeline(username)
+                timeline.add_profile_found(name, url)
                 return {name:url}
             else:
                 pass
@@ -40,6 +44,9 @@ def notapi(username,dct):
             if(not nf in source):
                 print((config.notapi_fn).format(symbol.social_found,f"{color.red}{color.bold}social/{color.green}{color.bold}{name}{color.reset}",htext))
                 threading.Thread(target=ozel_scrape,args=(url,username,)).start()
+                # Add to timeline
+                timeline = get_timeline(username)
+                timeline.add_profile_found(name, url)
                 return {name:url}
             else:
                 pass
@@ -64,6 +71,9 @@ def notapi(username,dct):
                     print()
                     print(scraped)
                 threading.Thread(target=ozel_scrape,args=(url,username,)).start()
+                # Add to timeline
+                timeline = get_timeline(username)
+                timeline.add_profile_found(name, url)
                 return {name:url}
 
         else:
@@ -80,4 +90,7 @@ def notapi(username,dct):
                     print()
                     print(scraped)
                 threading.Thread(target=ozel_scrape,args=(url,username,)).start()
+                # Add to timeline
+                timeline = get_timeline(username)
+                timeline.add_profile_found(name, url)
                 return {name:url}

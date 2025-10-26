@@ -1,6 +1,7 @@
 import requests 
 import json 
 from core import *
+from api.timeline import get_timeline
 
 def check(value):
     res = json.loads(requests.get(f"https://leakcheck.net/api/public?key=49535f49545f5245414c4c595f4150495f4b4559&check={value}").text)
@@ -9,7 +10,13 @@ def check(value):
         n = res['found']
         data = res["sources"]
         out+=f"     Leaks : {color.bold}{res['found']}{color.reset} | Passwords : {color.bold}{res['passwords']}{color.reset}\n\n"
+        
+        # Add to timeline
+        timeline = get_timeline(value)
+        
         for i in range(0,n):
             out+=f"     {color.reset}[{color.bold}{i+1}{color.reset}] Leak : {color.redbg}{data[i]['name']}{color.reset} \tLeak Date : {color.yellowbg}{data[i]['date']}{color.reset}\n"
+            # Add each leak to timeline
+            timeline.add_leak_event(data[i]['name'], data[i]['date'])
 
         print(out)

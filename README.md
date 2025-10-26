@@ -24,8 +24,43 @@ Slash is **Automated Osint Tool** that allows you to **OSINT** people by their u
 |  |__Location Scraper          (Social Media)                |
 |  |__Education Info Scraper    (Social Media)                |
 |  |__Personal Website Scraper  (Social Media)                |
+|                                                             |
+|__Timeline Analyzer              ⭐ NEW FEATURE              |
+|  |                                                          |
+|  |__Chronological Activity Timeline                         |
+|  |__Digital Footprint Visualization                         |
+|  |__JSON Export                                             |
+|  |__HTML Interactive Report                                 |
 |__|__________________________________________________________|
 ```
+
+## 🆕 Timeline Analyzer Feature
+
+The **Timeline Analyzer** is an innovative feature that automatically aggregates all discovered OSINT data and creates a comprehensive chronological timeline of a target's digital footprint. This powerful visualization tool helps investigators understand the temporal aspects of online presence and activities.
+
+### What it does:
+- 📊 **Aggregates Data**: Automatically collects timestamps from all OSINT modules
+- 🗓️ **Timeline View**: Displays all discoveries in chronological order
+- 🎯 **Activity Summary**: Shows total events, platforms found, and activity range
+- 💾 **JSON Export**: Exports structured timeline data for further analysis
+- 🌐 **HTML Report**: Generates beautiful interactive HTML visualization
+- 🎨 **Visual Timeline**: Color-coded events with icons for easy understanding
+
+### Timeline Events Include:
+- ✓ Social media profile discoveries
+- ⚠ Data breach/leak findings with dates
+- 📋 Pastebin mentions
+- ⚡ GitHub commit references
+
+The timeline is automatically generated at the end of each search and exported to both JSON and HTML formats for easy sharing and analysis.
+
+### Visual Timeline Report
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/394b44ac-d1f5-4b1c-b497-768c34b53b49" alt="Timeline Analyzer Screenshot" />
+</p>
+
+**[See detailed documentation →](TIMELINE_FEATURE.md)**
 
 ## Installation
 

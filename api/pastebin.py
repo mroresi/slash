@@ -14,6 +14,7 @@ from core import (
 )
 
 from api.extract import extract 
+from api.timeline import get_timeline
 
 class gathered:
     links = []
@@ -27,6 +28,9 @@ def search(value):
     cnt = db["count"]
     data = db["data"]
     out = f"{symbol.paste_found}:\n"
+    
+    # Get timeline instance
+    timeline = get_timeline(value)
 
     if(cnt!=0):
         for i in range(0,cnt):
@@ -38,10 +42,14 @@ def search(value):
                 include+=w
             
             extract.phone("pastebin",include)
-
-            out+=f"     {color.reset}[{color.whitebg}{data[i]['id']}{color.reset}] {color.bold}Paste{color.reset} : [{color.red}{color.underline}https://pastebin.com/{data[i]['id']}{color.reset}] {color.bold}Include{color.reset} : {color.reset}[{color.include}{include}{color.reset}]\n"
+            
+            paste_url = "https://pastebin.com/"+data[i]['id']
+            out+=f"     {color.reset}[{color.whitebg}{data[i]['id']}{color.reset}] {color.bold}Paste{color.reset} : [{color.red}{color.underline}{paste_url}{color.reset}] {color.bold}Include{color.reset} : {color.reset}[{color.include}{include}{color.reset}]\n"
             gathered.includes.append({data[i]['id']:data[i]['text']})
-            gathered.links.append({data[i]['id']:"https://pastebin.com/"+data[i]['id']})
+            gathered.links.append({data[i]['id']:paste_url})
+            
+            # Add to timeline
+            timeline.add_paste_event(data[i]['id'], paste_url)
 
     if(len(gathered.links)!=0):
         print(out)
