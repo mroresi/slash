@@ -13,6 +13,8 @@ from core import (
     css
 )
 
+from api.timeline import get_timeline
+
 class gathered:
     links = []
 
@@ -25,13 +27,21 @@ def search(value):
     cnt = db["total_count"]
     data = db["items"]
     out = f"{symbol.github_found}:\n"
+    
+    # Get timeline instance
+    timeline = get_timeline(value)
+    
     if(cnt!=0):
         for i in range(0,cnt):
             #print(f"{symbol.paste_found} {color.bold}Paste{color.reset} : [{color.red}{color.underline}https://pastebin.com/{data[i]['id']}{color.reset}] {color.bold}Include{color.reset} : {color.reset}[{color.orange}{data[i]['text']}{color.reset}]")
             #time.sleep(4)
             try:
-                out+=f"     {color.reset}[{color.whitebg}{data[i]['id']}{color.reset}] {color.bold}URL{color.reset} : [{color.red}{color.underline}https://github.com/{data[i]['url'].split('https://api.github.com/repos/')[1]}{color.reset}] {color.bold}Title{color.reset} : {color.reset}[{color.include}{data[i]['title']}{color.reset}]\n"
-                gathered.links.append({data[i]['id']:data[i]['url']});
+                github_url = f"https://github.com/{data[i]['url'].split('https://api.github.com/repos/')[1]}"
+                out+=f"     {color.reset}[{color.whitebg}{data[i]['id']}{color.reset}] {color.bold}URL{color.reset} : [{color.red}{color.underline}{github_url}{color.reset}] {color.bold}Title{color.reset} : {color.reset}[{color.include}{data[i]['title']}{color.reset}]\n"
+                gathered.links.append({data[i]['id']:data[i]['url']})
+                
+                # Add to timeline
+                timeline.add_github_event(data[i]['id'], github_url, data[i]['title'])
             except:
                 pass
     if(len(gathered.links)!=0):
