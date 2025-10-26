@@ -54,6 +54,14 @@ The **Timeline Analyzer** is an innovative feature that automatically aggregates
 
 The timeline is automatically generated at the end of each search and exported to both JSON and HTML formats for easy sharing and analysis.
 
+### Visual Timeline Report
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/394b44ac-d1f5-4b1c-b497-768c34b53b49" alt="Timeline Analyzer Screenshot" />
+</p>
+
+**[See detailed documentation →](TIMELINE_FEATURE.md)**
+
 ## Installation
 
 ```
